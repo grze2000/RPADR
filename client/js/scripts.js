@@ -27,6 +27,10 @@ $(() => {
         }
     });
 
+    socket.on('distance', distance => {
+        $('#distance').text(distance);
+    });
+
     $(document).on('keydown keyup', e => {
         if(!control || e.originalEvent.repeat) return;
         if(e.which in keys) {

@@ -3,7 +3,7 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const gpioController = require('./controllers/gpioController');
-const distanceController = require('./controllers/distanceController');
+const distanceController = require('./controllers/distanceController')(io);
 
 let adminID = null;
 
