@@ -27,8 +27,8 @@ const FORWARD_RIGHT = ['frontLeftForward', 'rearLeftForward'];
 const FORWARD_LEFT = ['frontRightForward', 'rearRightForward'];
 const BACKWARD_RIGHT = ['frontLeftBackward', 'rearLeftBackward'];
 const BACKWARD_LEFT = ['frontRightBackward', 'rearRightBackward'];
-const LEFT = ['frontLeftForward', 'rearLeftForward', 'frontRightBackward', 'rearRightBackward'];
-const RIGHT = ['frontRightForward', 'rearRightForward', 'frontLeftBackward', 'rearLeftBackward'];
+const RIGHT = ['frontLeftForward', 'rearLeftForward', 'frontRightBackward', 'rearRightBackward'];
+const LEFT = ['frontRightForward', 'rearRightForward', 'frontLeftBackward', 'rearLeftBackward'];
 
 const stop = () => {
     for(let pin of Object.values(pins)) {

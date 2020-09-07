@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
+const expressWs = require('express-ws')(app);
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const gpioController = require('./controllers/gpioController');
 const distanceController = require('./controllers/distanceController')(io);
+const cameraController = require('./controllers/cameraController')(app);
 
 let adminID = null;
 
@@ -67,6 +69,9 @@ io.on('connection', socket => {
     });
 });
 
-http.listen(3000, () => {
-    console.log('Listening on port 3000');
+http.listen(80, () => {
+    console.log('Listening on port 80');
+});
+app.listen(3000, () => {
+    console.log('Started stream server on port 3000');
 });

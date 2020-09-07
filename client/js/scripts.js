@@ -1,6 +1,9 @@
 $(() => {
     const socket = io();
     let control = false;
+    let canvas = $("#canvas")[0];
+    let wsavc = new WSAvcPlayer(canvas, "webgl");
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:"
 
     const keys = {
         87: 'up',
@@ -15,6 +18,7 @@ $(() => {
 
     socket.on('connect', () => {
         console.log('Connected');
+        wsavc.connect(protocol + '//' + window.location.host + ':3000/video');
     });
 
     socket.on('status', data => {
@@ -29,6 +33,17 @@ $(() => {
 
     socket.on('distance', distance => {
         $('#distance').text(distance);
+    });
+
+    socket.on('disconnect', () => {
+        wsavc.disconnect();
+        let gl = canvas.getContext("webgl");
+        gl.clearColor(106.0, 206.0, 252.0, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT)
+        $("#users").text("0");
+        $("#distance").text("0");
+        $(".control").removeClass("active");
+        $("body").removeClass("green");
     });
 
     $(document).on('keydown keyup', e => {
