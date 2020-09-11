@@ -12,7 +12,6 @@ module.exports = app => {
               ws.send(data, { binary: true }, (error) => { if (error) console.error(error); });
           });
           ws.on('close', () => {
-              //console.log('Client left');
               videoStream.removeAllListeners('data');
           });
     });

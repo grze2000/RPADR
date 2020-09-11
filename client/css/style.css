@@ -19,12 +19,6 @@ h1, h2, h3 {
 .green {
 	background-color: #5ff489;
 }
-@media only screen and (max-width: 1500px) {
-	table img {
-		width: 48px;
-		height: 48px;
-	}
-}
 .control {
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
