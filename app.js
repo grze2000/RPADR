@@ -6,8 +6,11 @@ const io = require('socket.io')(http);
 const gpioController = require('./controllers/gpioController');
 const distanceController = require('./controllers/distanceController')(io);
 const cameraController = require('./controllers/cameraController')(app);
+const ledController = require('./controllers/ledController');
 
 let adminID = null;
+
+ledController.on(ledController.FRONT);
 
 app.use(express.static(__dirname+'/client'));
 

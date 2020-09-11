@@ -1,4 +1,5 @@
 const { Gpio } = require('pigpio');
+const ledController = require('./ledController');
 
 let pins = {
     'frontLeftForward': 22,
@@ -37,19 +38,23 @@ const stop = () => {
 }
 
 const update = () => {
+    ledController.off(ledController.REAR);
     if(status['forward'] && status['left'])
         start(FORWARD_LEFT);
     else if(status['forward'] && status['right'])
         start(FORWARD_RIGHT);
     else if(status['forward'])
         start(FORWARD);
-    else if(status['backward'] && status['left'])
+    else if(status['backward'] && status['left']) {
+        ledController.on(ledController.REAR);
         start(BACKWARD_LEFT);
-    else if(status['backward'] && status['right'])
+    } else if(status['backward'] && status['right']) {
+        ledController.on(ledController.REAR);
         start(BACKWARD_RIGHT);
-    else if(status['backward'])
+    } else if(status['backward']) {
+        ledController.on(ledController.REAR);
         start(BACKWARD);
-    else if(status['left'])
+    } else if(status['left'])
         start(LEFT);
     else if(status['right'])
         start(RIGHT);
